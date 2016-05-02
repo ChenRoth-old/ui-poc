@@ -5,10 +5,6 @@ import {
 from 'redux'
 import util from 'util'
 
-import './tags/app/app.tag'
-import './tags/card/card.tag'
-import './tags/new-card/new-card.tag'
-
 import reducer from './reducers'
 
 let store = createStore(reducer)
