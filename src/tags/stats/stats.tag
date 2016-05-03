@@ -1,29 +1,35 @@
 <stats>
   <h2>Stats</h2>
-  <button onclick={ requestStats } disabled={ isBusy() }>{ isBusy() ?  'fetchin stats...' : 'request stats' }</button>
-  <table>
-  <tr>
-  <th>status</th>
-  </tr>
-  <tr>
-  <td>
-  { opts.s.status || 'fetching...' }
-  </td>
-  </tr>
-  </table>
+  <div>
+  <button onclick={ requestStats } disabled={ isBusy() }>{ messages[isBusy() ? 'BUSY' : 'NOT_BUSY'] } ♻</button>
+  { JSON.stringify(state.stats) || 'fetching...' }
+  </div>
   <style scoped type="scss">
     :scope {
+      text-align: center;
       display: inline-block;
-      background: red;
-      padding: 5px;
+      border: 1px solid #000;
+      h2 {
+        padding: 0;
+        margin: 0;
+        background: blue;
+      }
     }
   </style>
   <script>
-    this.isBusy = () => {
-      return Object.keys(opts.s).length == 0
+    this.mixin('redux')
+    this.use({ stats: 'stats' })
+    this.messages = {
+      BUSY: 'fetching...',
+      NOT_BUSY: 'request stats'
     }
-    this.requestStats = () => {
-      store.dispatch(fetchStats())
+
+    isBusy() {
+      return !Object.keys(this.state.stats).length
+    }
+
+    requestStats() {
+      this.dispatch(fetchStats())
     }
   </script>
 </stats>
