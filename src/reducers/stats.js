@@ -3,7 +3,8 @@ import fetchStats from '../actions/stats'
 const defaultStats = {
   status: 'not running',
   uptime: '0',
-  services: []
+  services: [],
+  version: ''
 }
 
 export default function statsReducer(stats = defaultStats, action) {

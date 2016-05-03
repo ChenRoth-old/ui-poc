@@ -1,0 +1,46 @@
+html,
+body {
+  font-family: Verdana, sans-serif;
+  font-size: 15px;
+  line-height: 1.5;
+}
+div {
+  padding: 3px;
+}
+body {
+  margin: 0 auto;
+  padding: 0;
+}
+button {
+  cursor: pointer;
+  border: 1px solid #0A1B5A;
+  padding: 1em;
+  background: #30479C;
+  color: #ddd;
+
+  &.no-style {
+    background: inherit;
+    border: 0;
+    &:focus {
+      outline: 0;
+    }
+  }
+}
+
+h1,h2,h3,h4 {
+  margin: 0;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #333;
+  border-radius: inherit;
+  color: #fff;
+}
+
+stats {
+  border: 1px solid #aaa;
+  background: #ccc;
+}

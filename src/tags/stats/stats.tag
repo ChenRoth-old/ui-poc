@@ -1,28 +1,32 @@
 <stats>
-  <h2>Stats</h2>
+  <header>
+  <button class="no-style"><i class="fa fa-th"></i></button>
+  <h3>Status</h3>
+  <button onclick={ requestStats } disabled={ isBusy() } class="no-style">
+  <i class="fa fa-refresh fa-lg { isBusy() && 'fa-spin' }" disabled={ isBusy() } onclick={ requestStats }></i></button>
+  </header>
   <div>
-  <button onclick={ requestStats } disabled={ isBusy() }>{ messages[isBusy() ? 'BUSY' : 'NOT_BUSY'] } ♻</button>
-  { JSON.stringify(state.stats) || 'fetching...' }
+  <section class="info">
+  <div class="table" each={ attr in state.stats }>
+    <div class="cell">{ attr }</div><div class="cell">{ state.stats[attr] }</div>
   </div>
+  </section>
   <style scoped type="scss">
     :scope {
+      .table {
+        display: table;
+      }
+      .cell {
+        display: table-cell;
+      }
       text-align: center;
       display: inline-block;
-      border: 1px solid #000;
-      h2 {
-        padding: 0;
-        margin: 0;
-        background: blue;
-      }
+      border: 1px solid #888;
     }
   </style>
   <script>
     this.mixin('redux')
     this.use({ stats: 'stats' })
-    this.messages = {
-      BUSY: 'fetching...',
-      NOT_BUSY: 'request stats'
-    }
 
     isBusy() {
       return !Object.keys(this.state.stats).length

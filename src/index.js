@@ -1,4 +1,9 @@
 import riot from 'riot'
+// import './style/elements.scss'
+function requireAll(requireContext) {
+  return requireContext.keys().map(requireContext);
+}
+requireAll(require.context("./style", true, /^\.\/.*\.scss$/));
 
 import {
   createStore,
